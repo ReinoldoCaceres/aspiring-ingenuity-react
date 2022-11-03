@@ -2,11 +2,11 @@ import http from "../Components/http-common";
 
 class AuthService {
 
-    public login(username: string, password: string) {
+    public login(email: string, password: string,role: string) {
 
-        return http.post("/api/login", { username, password })
+        return http.post("/api/auth/login", { email, password,role })
             .then(response => {
-                if (response.data.token) {
+                if (response.data.accessToken) {
                     localStorage.setItem("user", JSON.stringify(response.data));
                 }
                 return response.data;
@@ -18,7 +18,7 @@ class AuthService {
     }
 
     public register(username: string, password: string, firstname: string, lastname: string, email: string) {
-        return http.post("/api/register", { username, password, firstname, lastname, email });
+        return http.post("/api/auth/register", { username, password, firstname, lastname, email });
     }
 
     public getCurrentUser() {
