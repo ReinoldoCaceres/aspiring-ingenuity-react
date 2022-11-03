@@ -33,7 +33,7 @@ const Hi = () => {
       password: password,
     }
     //use the auth service to perform login operation
-    AuthService.login(userDataLogin.email, userDataLogin.password,"CLINIC")
+    AuthService.login(userDataLogin.email, userDataLogin.password)
       .then(() => {
         console.log(userDataLogin)
       },

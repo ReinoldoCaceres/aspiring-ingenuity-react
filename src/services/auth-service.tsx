@@ -2,11 +2,29 @@ import http from "../Components/http-common";
 
 class AuthService {
 
-    public login(email: string, password: string,role: string) {
+    // public login(email: string, password: string) {
 
-        return http.post("/api/auth/login", { email, password,role })
+    //     return http.post("auth/login", { email, password })
+    //         .then(response => {
+    //             // console.log(response);
+    //             console.log("Outsied if")
+    //             console.log(response.data)
+
+    //             console.log(response.data.accessToken)
+                
+    //                 console.log("Inside if")
+    //                 localStorage.setItem("accessToken", response.data.accessToken);
+    //                 localStorage.setItem("user", JSON.stringify(response.data));
+    //             return response.data;
+    //         });
+    // }
+
+    public login(email: string, password: string) {
+
+        return http.post("/auth/login", { email, password})
             .then(response => {
-                if (response.data.accessToken) {
+                if (response.data.data.accessToken) {
+                    localStorage.setItem('accessToken', response.data.data.accessToken);
                     localStorage.setItem("user", JSON.stringify(response.data));
                 }
                 return response.data;
