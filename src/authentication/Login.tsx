@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import AuthService from "../services/auth-service";
-import UserModel from "../models/user";
+import UserLoginModel from "../models/userLogin";
 
 
 const Hi = () => {
@@ -23,12 +23,12 @@ const Hi = () => {
     setPassword(event.target.value);
   }
 
-  const handleSubmit = (e: any) => {
+  const handleLogin = (e: any) => {
     e.preventDefault();
 
     //construct user object
 
-    const userDataLogin: UserModel = {
+    const userDataLogin: UserLoginModel = {
       email: email,
       password: password,
     }
@@ -36,6 +36,7 @@ const Hi = () => {
     AuthService.login(userDataLogin.email, userDataLogin.password)
       .then(() => {
         console.log(userDataLogin)
+        //TODO: change this console log by a navigate() to the home page
       },
         (err => {
           console.log(err)
@@ -56,16 +57,23 @@ const Hi = () => {
             <hr />
           </div>
 
-          <form onSubmit={handleSubmit} id="LoginForm">
-            <label htmlFor="email">Please enter email</label>
+          <form onSubmit={handleLogin} id="LoginForm">
+          <div className="input-wrapper">
+            <label htmlFor="email">Email</label>
             <input type="text" placeholder="Enter Email" name="email"
               value={email} onChange={onChangeEmail}
               required />
+            </div>
 
-            <label htmlFor="psw">Please enter password</label>
+
+
+            <div className="input-wrapper">
+
+            <label htmlFor="psw">Password</label>
             <input type="password" placeholder="Enter Password" name="psw"
-              value={password} onChange={onChangePassword }
+              value={password} onChange={onChangePassword}
               required />
+              </div>
 
             <div className="firstBtn">
               <button type="submit" className="child">Next</button>

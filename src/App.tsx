@@ -2,14 +2,16 @@ import "./App.css";
 // import SignUp from "./Components/SignUp";
 // import Login from "./Components/Login";
 import 'bootstrap/dist/css/bootstrap.css';
-import Hi from "./Components/Hi";
+import Login from "./authentication/Login";
+// import SignUp from "./authentication/SignUp";
 
 function App() {
 
 
   return (
     <div className="App">
-      <Hi />
+      <Login />
+      {/* <SignUp /> */}
     </div>
 
 

@@ -35,11 +35,12 @@ class AuthService {
         return localStorage.removeItem("user");
     }
 
-    public register(username: string, password: string, firstname: string, lastname: string, email: string) {
-        return http.post("/api/auth/register", { username, password, firstname, lastname, email });
+    public register(email: string, password: string, role: "CLINIC") {
+        //TODO: Change the role to a dynamic input field
+        return http.post("/auth/signup", { email, password, role});
     }
 
-    public getCurrentUser() {
+    getCurrentUser() {
 
         const userString = localStorage.getItem("user");
         if (userString) {
